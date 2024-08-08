@@ -13,29 +13,29 @@ class Client {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function create($name, $address, $phone, $email, $gender, $status, $admin_id) {
-        $stmt = $this->pdo->prepare("INSERT INTO clients (nom, addresse, telephone, email, sexe, statut, admin_id) VALUES (:name, :address, :phone, :email, :gender, :status, :admin_id)");
+    public function create($nom, $addresse, $telephone, $email, $sexe, $statut, $admin_id) {
+        $stmt = $this->pdo->prepare("INSERT INTO clients (nom, addresse, telephone, email, sexe, statut, admin_id) VALUES (:nom, :addresse, :telephone, :email, :sexe, :statut, :admin_id)");
         $stmt->execute([
-            ':name' => $name,
-            ':address' => $address,
-            ':phone' => $phone,
+            ':nom' => $nom,
+            ':addresse' => $addresse,
+            ':telephone' => $telephone,
             ':email' => $email,
-            ':gender' => $gender,
-            ':status' => $status,
+            ':sexe' => $sexe,
+            ':statut' => $statut,
             ':admin_id' => $admin_id
         ]);
     }
 
-    public function update($id, $name, $address, $phone, $email, $gender, $status) {
-        $stmt = $this->pdo->prepare("UPDATE clients SET nom = :name, adresse = :address, telephone = :phone, email = :email, sexe = :gender, statut = :status WHERE id = :id");
+    public function update($id, $nom, $addresse, $telephone, $email, $sexe, $statut) {
+        $stmt = $this->pdo->prepare("UPDATE clients SET nom = :nom, addresse = :addresse, telephone = :telephone, email = :email, sexe = :sexe, statut = :statut WHERE id = :id");
         $stmt->execute([
             ':id' => $id,
-            ':name' => $name,
-            ':address' => $address,
-            ':phone' => $phone,
+            ':nom' => $nom,
+            ':addresse' => $addresse,
+            ':telephone' => $telephone,
             ':email' => $email,
-            ':gender' => $gender,
-            ':status' => $status
+            ':sexe' => $sexe,
+            ':statut' => $statut
         ]);
     }
 
