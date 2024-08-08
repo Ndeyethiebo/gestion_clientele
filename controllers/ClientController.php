@@ -23,7 +23,7 @@ class ClientController {
             $sexe = $_POST['sexe'];
             $statut = isset($_POST['statut']) ? $_POST['statut'] : null;
             $admin_id = isset($_POST['admin_id']) ? $_POST['admin_id'] : null;
-
+            
             $this->clientModel->create($nom, $addresse, $telephone, $email, $sexe, $statut, $admin_id);
             header('Location: ../public/index.php');
             exit(); 
