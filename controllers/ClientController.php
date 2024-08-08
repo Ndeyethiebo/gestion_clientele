@@ -16,17 +16,17 @@ class ClientController {
 
     public function addClient() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $name = $_POST['nom'];
-            $address = $_POST['adresse']; // Correct spelling here
-            $phone = $_POST['telephone'];
+            $nom = $_POST['nom'];
+            $addresse = $_POST['adresse']; 
+            $telephone = $_POST['telephone'];
             $email = $_POST['email'];
-            $gender = $_POST['sexe'];
-            $status = $_POST['statut'];
+            $sexe = $_POST['sexe'];
+            $statut = $_POST['statut'];
             $admin_id = $_POST['admin_id'];
 
-            $this->clientModel->create($name, $address, $phone, $email, $gender, $status, $admin_id);
+            $this->clientModel->create($nom, $addresse, $telephone, $email, $sexe, $statut, $admin_id);
             header('Location: ../public/index.php');
-            exit(); // Ensure the script stops after the redirect
+            exit(); 
         } else {
             include '../views/addClient.php';
         }
@@ -34,16 +34,16 @@ class ClientController {
 
     public function updateClient($id) {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $name = $_POST['nom'];
-            $address = $_POST['adresse']; // Correct spelling here
-            $phone = $_POST['telephone'];
+            $nom = $_POST['nom'];
+            $addresse = $_POST['adresse']; // Correct spelling here
+            $telephone = $_POST['telephone'];
             $email = $_POST['email'];
-            $gender = $_POST['sexe'];
-            $status = $_POST['statut'];
+            $sexe = $_POST['sexe'];
+            $statut = $_POST['statut'];
 
-            $this->clientModel->update($id, $name, $address, $phone, $email, $gender, $status);
+            $this->clientModel->update($id, $nom, $addresse, $telephone, $email, $sexe, $statut);
             header('Location: ../public/index.php');
-            exit(); // Ensure the script stops after the redirect
+            exit(); 
         } else {
             $client = $this->clientModel->getById($id);
             include '../views/editClient.php';
@@ -53,7 +53,7 @@ class ClientController {
     public function deleteClient($id) {
         $this->clientModel->delete($id);
         header('Location: ../public/index.php');
-        exit(); // Ensure the script stops after the redirect
+        exit(); 
     }
 
     public function getClientById($id) {
@@ -95,7 +95,7 @@ class ClientController {
         foreach ($clients as $client) {
             $pdf->Cell(20, 10, $client['id'], 1);
             $pdf->Cell(30, 10, $client['nom'], 1);
-            $pdf->Cell(40, 10, $client['adresse'], 1); // Correct spelling here
+            $pdf->Cell(40, 10, $client['adresse'], 1);
             $pdf->Cell(30, 10, $client['telephone'], 1);
             $pdf->Cell(50, 10, $client['email'], 1);
             $pdf->Cell(20, 10, $client['sexe'], 1);
@@ -103,7 +103,7 @@ class ClientController {
             $pdf->Ln();
         }
 
-        ob_clean(); // Clean the output buffer to avoid FPDF error
+        ob_clean(); 
         $pdf->Output('D', 'clients.pdf');
         exit();
     }
