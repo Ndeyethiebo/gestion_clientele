@@ -3,8 +3,10 @@
 
 class Client {
     private $db;
+    private $pdo;
 
-    public function __construct() {
+    public function __construct($pdo) {
+        $this->pdo = $pdo;
         $this->db = new PDO('host=mysql-thiebo.alwaysdata.net;dbname=thiebo_gestionclientele;charset=utf8', 'thiebo', 'passe123');
     }
 
